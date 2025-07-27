@@ -3,75 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resolution Tech Constructions | Coming Soon</title>
+  <title>Resolution Tech Constructions</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
-      color: #f5f5f5;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Open Sans', sans-serif;
-      height: 100vh;
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header img {
+      width: 120px;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 5rem 2rem;
       text-align: center;
-      overflow: hidden;
     }
 
-    .container {
-      max-width: 600px;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.75);
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-      border: 1px solid #333;
-      animation: fadeIn 1.8s ease;
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #008080;
     }
 
-    img.logo {
-      max-width: 180px;
-      margin-bottom: 2rem;
-      animation: fadeInDown 1.5s ease;
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 300;
+      color: #444;
+      margin-top: 1rem;
     }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: gold;
+    .hero p {
+      max-width: 800px;
+      margin: 1rem auto;
+      color: #555;
+    }
+
+    .hero .cta-button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #008080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .features, .tech, .process, .contact, footer {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .features-grid, .services-grid, .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .tech .image-text {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .tech img {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 0.75rem;
       margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    p {
-      font-size: 1.1rem;
-      color: #ccc;
-      margin-bottom: 2rem;
+    .contact-form button {
+      background: #008080;
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .tagline {
-      font-size: 0.95rem;
-      color: silver;
-      font-style: italic;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    footer {
+      background: #f1f1f1;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Logo.png" alt="Resolution Tech Logo" class="logo" />
-    <h1>Coming Soon</h1>
-    <p>We’re building a bold, AI-powered future in construction and restoration.</p>
-    <p class="tagline">Engineering excellence. Powered by innovation.</p>
-  </div>
+  <header>
+    <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Logo.png" alt="Resolution Tech Logo"/>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#advantage">AI Advantage</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Resolution Tech Constructions</h1>
+    <h2>Engineering the future with artificial intelligence</h2>
+    <p>Delivering premium construction solutions across residential, commercial, and industrial sectors with unmatched precision and efficiency.</p>
+    <button class="cta-button">Explore AI Advantage</button>
+  </section>
+
+  <section class="features" id="advantage">
+    <h2 style="text-align: center">The AI Advantage</h2>
+    <div class="features-grid">
+      <div class="card">
+        <h3>40%</h3>
+        <p><strong>Faster Delivery</strong><br>AI-optimized scheduling reduces timelines.</p>
+      </div>
+      <div class="card">
+        <h3>25%</h3>
+        <p><strong>Cost Reduction</strong><br>Automation minimizes waste and optimizes budgets.</p>
+      </div>
+      <div class="card">
+        <h3>99.8%</h3>
+        <p><strong>Quality Score</strong><br>Real-time quality monitoring ensures excellence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tech">
+    <h2 style="text-align: center">Cutting-Edge Technologies</h2>
+    <div class="image-text">
+      <img src="https://i.imgur.com/zFGQGql.jpg" alt="Tech Visualization"/>
+      <div>
+        <p><strong>Machine Learning</strong><br>Predict outcomes and optimize processes.</p>
+        <p><strong>Predictive Analytics</strong><br>Prevent delays and overruns before they happen.</p>
+        <p><strong>Automation Systems</strong><br>Free experts from repetitive tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <h2 style="text-align: center">AI-Powered Process</h2>
+    <p style="text-align: center">Our intelligent workflow optimizes every phase of construction.</p>
+    <div class="process-grid">
+      <div class="card">
+        <strong>01 Analysis</strong><br>AI analyzes project requirements and constraints
+      </div>
+      <div class="card">
+        <strong>02 Planning</strong><br>Machine learning optimizes schedules and resources
+      </div>
+      <div class="card">
+        <strong>03 Execution</strong><br>Automated systems monitor progress in real time
+      </div>
+      <div class="card">
+        <strong>04 Delivery</strong><br>Quality assurance ensures perfect completion
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 style="text-align: center">Let's Build the Future</h2>
+    <p style="text-align: center">Contact our team to start your AI-powered construction journey today.</p>
+    <div class="contact-form">
+      <input type="text" placeholder="First Name">
+      <input type="text" placeholder="Last Name">
+      <input type="email" placeholder="Email">
+      <input type="tel" placeholder="Phone">
+      <select>
+        <option>Select project type</option>
+        <option>Residential</option>
+        <option>Commercial</option>
+        <option>Industrial</option>
+      </select>
+      <textarea rows="4" placeholder="Project Details"></textarea>
+      <button>Send Message</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Resolution Tech Constructions &copy; 2025. All rights reserved.</p>
+  </footer>
 </body>
 </html>
