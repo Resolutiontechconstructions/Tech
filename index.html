@@ -21,21 +21,31 @@
 
     header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 1rem 2rem;
       border-bottom: 1px solid #ddd;
     }
 
-    header img {
+    .logo {
       width: 120px;
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 0.5rem;
     }
 
     nav a {
-      margin-left: 2rem;
       text-decoration: none;
       color: #111;
       font-weight: 600;
+      font-size: 1rem;
     }
 
     .hero {
@@ -135,11 +145,13 @@
 </head>
 <body>
   <header>
-    <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Logo.png" alt="Resolution Tech Logo"/>
+    <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Logo.png" alt="Resolution Tech Logo"/>
     <nav>
       <a href="#services">Services</a>
       <a href="#advantage">AI Advantage</a>
       <a href="#contact">Contact</a>
+      <a href="#firm">Our Firm</a>
+      <a href="#locations">Our Locations</a>
     </nav>
   </header>
 
