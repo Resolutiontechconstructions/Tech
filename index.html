@@ -178,9 +178,12 @@
     </nav>
   </header>
 
-  <!-- Video Background Section with Two-Video Loop -->
+  <!-- Updated Single Video Background Section -->
   <section class="video-section">
-    <video id="looped-video" autoplay muted playsinline class="background-video"></video>
+    <video autoplay muted loop playsinline class="background-video">
+      <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Resolutiontechmainvideop.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <div class="video-overlay">
       <div class="hero-content">
         <h1>Resolution Tech Constructions</h1>
@@ -190,26 +193,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Video Switching Script -->
-  <script>
-    const videoSources = [
-      "https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Metro%20city.mp4",
-      "https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Sunset%20city.mp4"
-    ];
-    const videoElement = document.getElementById("looped-video");
-    let currentIndex = 0;
-
-    function playNext() {
-      videoElement.src = videoSources[currentIndex];
-      videoElement.load();
-      videoElement.play();
-      currentIndex = (currentIndex + 1) % videoSources.length;
-    }
-
-    videoElement.addEventListener("ended", playNext);
-    playNext();
-  </script>
 
   <section class="features" id="advantage">
     <h2 style="text-align: center">The AI Advantage</h2>
