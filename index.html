@@ -33,17 +33,24 @@
       margin-bottom: 0.5rem;
     }
 
+    .nav-ribbon {
+      width: 100%;
+      background: linear-gradient(to right, #000000, #1a1a1a);
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
-      margin-top: 0.5rem;
     }
 
     nav a {
       text-decoration: none;
-      color: #111;
+      color: #fff;
       font-weight: 600;
       font-size: 1rem;
     }
@@ -174,13 +181,15 @@
 <body>
   <header>
     <img class="logo" src="https://github.com/Resolutiontechconstructions/Tech/blob/main/images/logo.jpg" alt="Resolution Tech Logo"/>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#advantage">AI Advantage</a>
-      <a href="#contact">Contact</a>
-      <a href="#firm">Our Firm</a>
-      <a href="#locations">Our Locations</a>
-    </nav>
+    <div class="nav-ribbon">
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#advantage">AI Advantage</a>
+        <a href="#contact">Contact</a>
+        <a href="#firm">Our Firm</a>
+        <a href="#locations">Our Locations</a>
+      </nav>
+    </div>
   </header>
 
   <section class="video-section">
