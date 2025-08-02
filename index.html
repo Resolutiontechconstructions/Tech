@@ -70,33 +70,6 @@ header {
   min-width: 0;   /* NEW */
 }
 
-.search-form {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-  max-width: 180px; /* NEW: restricts the width */
-  flex-shrink: 0;
-}
-
-.search-form input[type="text"] {
-  padding: 0.4rem 0.6rem;
-  border: none;
-  outline: none;
-  font-size: 0.95rem;
-}
-
-.search-form button {
-  background-color: #004080;
-  color: white;
-  border: none;
-  padding: 0.45rem 0.8rem;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-
 .request-button {
   background-color: #6A3B0B;
   color: white;
@@ -252,6 +225,18 @@ header {
   max-width: 100%;
   overflow-x: hidden;
 }
+.search-icon {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #004080;
+  padding: 0.2rem 0.5rem;
+  transition: transform 0.2s ease;
+}
+.search-icon:hover {
+  transform: scale(1.2);
+}
 
   </style>
 </head>
@@ -271,10 +256,7 @@ header {
     </nav>
   </div>
  <div class="header-right">
-  <form class="search-form" action="#" method="get">
-    <input type="text" placeholder="Search..." name="q" />
-    <button type="submit">&#128269;</button>
-  </form>
+  <button class="search-icon" title="Search">&#128269;</button>
   <button class="request-button">Request a Proposal</button>
 </div>
   <!-- Keep the rest of your code from here onward unchanged (video, sections, services, footer, etc.) -->
