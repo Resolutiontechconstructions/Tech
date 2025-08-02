@@ -32,8 +32,10 @@ header {
   display: flex;
   align-items: flex-end;
   gap: 0.75rem;
-  flex-shrink: 0;
+  flex: 1 1 auto; /* NEW: allows it to shrink/grow nicely */
+  min-width: 0;   /* NEW: prevents it from overflowing */
 }
+
 .logo {
   width: 120px;
   height: auto;
@@ -47,24 +49,25 @@ header {
   padding-bottom: 0.2rem;
 }
 
-
-
 .header-center {
   display: flex;
   justify-content: center;
-  flex: 1;
+  flex: 1 1 auto; /* NEW */
+  min-width: 0;   /* NEW */
 }
+
 
 .header-center nav {
   display: flex;
   gap: 3rem; /* increase this value to spread the menu items more */
 }
 
-
 .header-right {
   display: flex;
   gap: 1.2rem;
   align-items: center;
+  flex: 1 1 auto; /* NEW */
+  min-width: 0;   /* NEW */
 }
 
 .search-form {
