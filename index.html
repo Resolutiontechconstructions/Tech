@@ -14,11 +14,14 @@
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #ffffff;
-      color: #111;
-      line-height: 1.6;
-    }
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ffffff;
+  color: #111;
+  line-height: 1.6;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -90,21 +93,25 @@ header {
 
 .video-section {
   position: relative;
-  width: 120%;
   height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
 
-    .background-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+
+  .background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 
     .video-overlay {
       display: flex;
