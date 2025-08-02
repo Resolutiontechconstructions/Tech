@@ -11,12 +11,14 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Open Sans', sans-serif;
       background-color: #ffffff;
       color: #111;
       line-height: 1.6;
     }
+
     header {
       display: flex;
       flex-direction: column;
@@ -25,10 +27,12 @@
       padding: 1rem 2rem;
       border-bottom: 1px solid #ddd;
     }
+
     .logo {
       width: 120px;
       margin-bottom: 0.5rem;
     }
+
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -36,17 +40,20 @@
       gap: 2rem;
       margin-top: 0.5rem;
     }
+
     nav a {
       text-decoration: none;
       color: #111;
       font-weight: 600;
       font-size: 1rem;
     }
+
     .video-section {
       position: relative;
       height: 100vh;
       overflow: hidden;
     }
+
     .background-video {
       position: absolute;
       top: 0;
@@ -56,6 +63,7 @@
       object-fit: cover;
       z-index: -1;
     }
+
     .video-overlay {
       display: flex;
       align-items: center;
@@ -64,25 +72,30 @@
       padding: 3rem 2rem;
       background: rgba(0, 0, 0, 0.4);
     }
+
     .hero-content {
       text-align: center;
       color: white;
       max-width: 900px;
     }
+
     .hero-content h1 {
       font-size: 3rem;
       font-weight: bold;
       margin-bottom: 1rem;
     }
+
     .hero-content h2 {
       font-size: 2rem;
       font-weight: 300;
       margin-bottom: 1rem;
     }
+
     .hero-content p {
       font-size: 1.1rem;
       margin-bottom: 2rem;
     }
+
     .cta-button {
       padding: 0.8rem 1.5rem;
       background-color: #008080;
@@ -92,16 +105,19 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
     .features, .tech, .process, .contact, footer {
       padding: 4rem 2rem;
       max-width: 1200px;
       margin: auto;
     }
+
     .features-grid, .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
+
     .card {
       background: #f9f9f9;
       padding: 1.5rem;
@@ -109,6 +125,7 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.05);
       text-align: center;
     }
+
     .service-item {
       background: #fff;
       border: 1px solid #ddd;
@@ -117,24 +134,29 @@
       overflow: hidden;
       text-align: center;
     }
+
     .service-item img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       border-bottom: 1px solid #eee;
     }
+
     .service-description {
       padding: 1rem;
     }
+
     .service-description h3 {
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
       font-weight: 700;
     }
+
     .service-description p {
       font-size: 0.95rem;
       color: #444;
     }
+
     footer {
       background: #f1f1f1;
       padding: 2rem;
@@ -192,8 +214,19 @@
   <section class="features" id="services">
     <h2 style="text-align: center">Our Services</h2>
     <div class="services-grid">
-      <!-- Full list of service cards with descriptions will go here -->
-      <!-- Updated version will be shown in the next step -->
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Structural%20engineering%20services.png"><div class="service-description"><h3>Structural Design and Analysis</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20envelope.png"><div class="service-description"><h3>Restoration and Rehabilitation Engineering</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Special%20inspections.png"><div class="service-description"><h3>Forensic Engineering and Expert Reports</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/MEP.png"><div class="service-description"><h3>Inspection and Compliance Services</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Civil%20engineering.png"><div class="service-description"><h3>Construction Administration</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20envelope.png"><div class="service-description"><h3>Building Facade Assessment and Repair</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Special%20inspections.png"><div class="service-description"><h3>Moisture Intrusion and Envelope Diagnostics</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Structural%20engineering%20services.png"><div class="service-description"><h3>Roofing and Flashing Services</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/MEP.png"><div class="service-description"><h3>Building Envelope CAD and Design Detailing</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Civil%20engineering.png"><div class="service-description"><h3>Envelope Construction Administration</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Structural%20engineering%20services.png"><div class="service-description"><h3>Discipline Specific CAD Support</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Special%20inspections.png"><div class="service-description"><h3>Subscription Based Structural Support</h3></div></div>
+      <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20envelope.png"><div class="service-description"><h3>Additional Services</h3></div></div>
     </div>
   </section>
 
