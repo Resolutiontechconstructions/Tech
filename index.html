@@ -20,20 +20,21 @@
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #ddd;
-      max-width: 1200px;
-      margin: auto;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
 
-    .logo-container {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.75rem;
-    }
+.logo-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
 
     .logo {
       width: 80px;
@@ -222,26 +223,25 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/logo_Cropped.jpg" alt="Resolution Tech Logo"/>
-      <div class="site-title">Resolution Tech Constructions</div>
-    </div>
-    <div class="header-center">
-      <nav>
-        <a href="#services">Services</a>
-        <a href="#advantage">AI Advantage</a>
-        <a href="#contact">Contact</a>
-        <a href="#firm">Our Firm</a>
-        <a href="#locations">Our Locations</a>
-      </nav>
-    </div>
-    <div class="header-right">
-      <div class="search-icon">&#128269;</div>
-      <button class="request-button">Request a Proposal</button>
-    </div>
-  </header>
-
+ <header>
+  <div class="logo-container">
+    <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/logo_Cropped.jpg" alt="Resolution Tech Logo"/>
+    <div class="site-title">Resolution Tech Constructions</div>
+  </div>
+  <div class="header-center">
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#advantage">AI Advantage</a>
+      <a href="#contact">Contact</a>
+      <a href="#firm">Our Firm</a>
+      <a href="#locations">Our Locations</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <div class="search-icon">&#128269;</div>
+    <button class="request-button">Request a Proposal</button>
+  </div>
+</header>
   <!-- Keep the rest of your code from here onward unchanged (video, sections, services, footer, etc.) -->
 
   <section class="video-section">
