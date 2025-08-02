@@ -88,11 +88,17 @@ header {
       font-size: 1rem;
     }
 
-    .video-section {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
+   .video-section {
+  position: relative;
+  height: 100vh;
+  width: 100vw; /* NEW */
+  left: 50%;     /* NEW */
+  right: 50%;    /* NEW */
+  margin-left: -50vw;  /* NEW */
+  margin-right: -50vw; /* NEW */
+  overflow: hidden;
+}
+
 
     .background-video {
       position: absolute;
