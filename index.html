@@ -31,27 +31,51 @@
 
     .logo-container {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       gap: 0.75rem;
     }
 
     .logo {
-      width: 60px;
+      width: 80px;
       height: auto;
     }
 
     .site-title {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: #004080;
       white-space: nowrap;
+      padding-bottom: 0.2rem;
     }
 
-    nav {
+    .header-center {
       display: flex;
-      flex-wrap: wrap;
       gap: 2rem;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .search-icon {
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .request-button {
+      background-color: #6A3B0B;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
     }
 
     nav a {
@@ -203,16 +227,22 @@
       <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/logo_Cropped.jpg" alt="Resolution Tech Logo"/>
       <div class="site-title">Resolution Tech Constructions</div>
     </div>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#advantage">AI Advantage</a>
-      <a href="#contact">Contact</a>
-      <a href="#firm">Our Firm</a>
-      <a href="#locations">Our Locations</a>
-    </nav>
+    <div class="header-center">
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#advantage">AI Advantage</a>
+        <a href="#contact">Contact</a>
+        <a href="#firm">Our Firm</a>
+        <a href="#locations">Our Locations</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="search-icon">&#128269;</div>
+      <button class="request-button">Request a Proposal</button>
+    </div>
   </header>
 
-  <!-- The rest of your code remains the same (video section, services, etc.) -->
+  <!-- Keep the rest of your code from here onward unchanged (video, sections, services, footer, etc.) -->
 
   <section class="video-section">
     <video autoplay muted loop playsinline class="background-video">
