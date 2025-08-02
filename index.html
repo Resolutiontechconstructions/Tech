@@ -66,11 +66,30 @@ header {
   align-items: center;
 }
 
-.search-icon {
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #333;
+.search-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
+
+.search-form input[type="text"] {
+  padding: 0.4rem 0.6rem;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.search-form button {
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
 
 .request-button {
   background-color: #6A3B0B;
@@ -240,11 +259,13 @@ header {
       <a href="#locations">Our Locations</a>
     </nav>
   </div>
-  <div class="header-right">
-    <div class="search-icon">&#128269;</div>
-    <button class="request-button">Request a Proposal</button>
-  </div>
-</header>
+ <div class="header-right">
+  <form class="search-form" action="#" method="get">
+    <input type="text" placeholder="Search..." name="q" />
+    <button type="submit">&#128269;</button>
+  </form>
+  <button class="request-button">Request a Proposal</button>
+</div>
   <!-- Keep the rest of your code from here onward unchanged (video, sections, services, footer, etc.) -->
 
   <section class="video-section">
