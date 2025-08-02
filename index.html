@@ -22,6 +22,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* NEW */
   padding: 1rem 2rem;
   border-bottom: 1px solid #ddd;
   width: 100%;
@@ -72,6 +73,8 @@ header {
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
+  max-width: 180px; /* NEW: restricts the width */
+  flex-shrink: 0;
 }
 
 .search-form input[type="text"] {
@@ -242,6 +245,11 @@ header {
       font-size: 0.9rem;
       color: #555;
     }
+    html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
   </style>
 </head>
 <body>
