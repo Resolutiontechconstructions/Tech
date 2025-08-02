@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -112,9 +112,15 @@
       margin: auto;
     }
 
-    .features-grid, .services-grid {
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
     }
 
@@ -234,4 +240,4 @@
     &copy; 2025 Resolution Tech Constructions. All rights reserved.
   </footer>
 </body>
-</html>   
+</html>
