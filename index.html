@@ -75,13 +75,18 @@ header {
 }
 
 .request-button {
-  background-color: #6A3B0B;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
+  background: none;       /* Removes brown background box */
+  color: #111;            /* Matches nav link color */
+  padding: 0;              /* Removes extra space around text */
+  border: none;           /* Removes any border */
+  font-weight: 600;       /* Matches the nav font weight */
+  font-size: 1rem;        /* Matches nav font size */
+  cursor: pointer;        /* Keeps the clickable hand cursor */
+  text-decoration: none;  /* No underline (same as nav links) */
+}
+
+.request-button:hover {
+  text-decoration: underline; /* Adds underline on hover like nav links */
 }
 
     nav a {
