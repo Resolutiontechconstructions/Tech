@@ -208,6 +208,84 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .service-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+/* ===== Services hover zoom + dropdown + page blur ===== */
+.service-item {
+  position: relative;            /* anchor dropdown */
+  overflow: visible;             /* allow dropdown outside card */
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.service-item.hover-focus,
+.service-item:hover {
+  transform: scale(1.04);
+  z-index: 1001;                 /* above the blur overlay */
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+}
+
+/* dropdown panel (injected by JS) */
+.service-drop {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: min(420px, 92vw);
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+  padding: 14px 16px;
+  max-height: 0;                 /* collapsed by default */
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height .25s ease, opacity .2s ease, transform .2s ease;
+}
+
+/* reveal on hover/focus */
+.service-item:hover .service-drop,
+.service-item.hover-focus .service-drop {
+  max-height: 320px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.service-drop h4 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #004080;
+}
+.service-drop ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+}
+.service-drop li {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* full-page blur overlay */
+#blur-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  background: rgba(255,255,255,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 1000;                 /* sits under focused card */
+}
+
+/* activate blur */
+#blur-overlay.active { opacity: 1; }
+
+/* allow dropdowns to flow outside the grid */
+.services-grid { overflow: visible; }
 
     .service-item img {
       width: 100%;
@@ -377,9 +455,97 @@
 </video>
   </div>
 </section>
+<!-- Page blur overlay for services hover -->
+<div id="blur-overlay"></div>
 
   <footer>
     &copy; 2025 Resolution Tech Constructions. All rights reserved.
   </footer>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const map = new Map([
+    ["Structural Analysis and Design", [
+      "Steel & Concrete Design","Load Ratings","Seismic Checks","Value Engineering",
+      "Strengthening Schemes","Shop Drawing Review"
+    ]],
+    ["Restoration and Rehabilitation Services", [
+      "Façade Repairs","Crack Injection","Masonry Stitching","Corrosion Mitigation",
+      "Carbon FRP Wraps","Protective Coatings"
+    ]],
+    ["Forensic Engineering and Expert Reports", [
+      "Failure Causation","Water Intrusion Source","Roof Damage Assessments",
+      "Expert Witness Reports","Insurance Support","Code Compliance Opinions"
+    ]],
+    ["Inspection and Compliance Services", [
+      "Special Inspections","Condition Assessments","Punch Lists",
+      "Envelope Testing (ASTM)","Post-Repair Verification","Permit Closeout"
+    ]],
+    ["Structural Construction Administration", [
+      "Submittal Reviews","RFI Responses","Site Observations",
+      "Change Order Support","As-Built Review","Contractor Coordination"
+    ]],
+    ["Building Facade Assessment and Repair Services", [
+      "Ornamental Stone Rehab","Shelf Angle Repairs","Sealant Replacement",
+      "Parapet Rebuilds","Lintel Replacement","Repointing"
+    ]],
+    ["Moisture Intrusion and Envelope Diagnostics", [
+      "Leak Mapping","Infrared Scans","Probe Openings",
+      "Window/Wall Interface","Roof/Wall Transitions","Vapor/Drainage Paths"
+    ]],
+    ["Roofing and Flashing assessment Services", [
+      "EPDM/TPO Review","Coping & Counterflashing","Penetration Detailing",
+      "Drainage & Ponding","Warranty Coordination","Repair Scopes"
+    ]],
+    ["Building Envelope Design Detailing", [
+      "Transitions & Terminations","Air/Water Barriers","Facade Anchoring",
+      "Thermal Breaks","Expansion Joints","Shop Drawing Detailing"
+    ]],
+    ["Envelope Construction Administration", [
+      "Substrate Prep Review","Mockups & Testing","Material Conformance",
+      "Scheduling & Sequencing","RFIs/Submittals","Daily Logs"
+    ]],
+    ["Discipline Specific CAD Support", [
+      "Structural Sheets","Envelope Details","MEP Coordination",
+      "As-Builts","Permit Sets","Shop Drawings"
+    ]],
+    ["Subscription Based Structural Support", [
+      "On-Call Reviews","Rapid RFIs","Small Calcs",
+      "Detail Markups","Scope Clarifications","Monthly Reporting"
+    ]],
+    ["Additional Services", [
+      "Peer Review","Third-Party QC","Owner’s Rep",
+      "BIM Coordination","Spec Writing","Training/Workshops"
+    ]]
+  ]);
+
+  const cards = document.querySelectorAll('.service-item');
+  const overlay = document.getElementById('blur-overlay');
+
+  cards.forEach(card => {
+    const titleEl = card.querySelector('.service-description h3');
+    const title = titleEl ? titleEl.textContent.trim() : "Services";
+    const items = map.get(title) || ["Scope A","Scope B","Scope C","Scope D","Scope E","Scope F"];
+
+    // Build dropdown
+    const drop = document.createElement('div');
+    drop.className = 'service-drop';
+    drop.innerHTML = `
+      <h4>${title}</h4>
+      <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
+    `;
+    card.appendChild(drop);
+
+    // Blur overlay toggle on hover/focus
+    const activate = () => { overlay.classList.add('active'); card.classList.add('hover-focus'); };
+    const deactivate = () => { overlay.classList.remove('active'); card.classList.remove('hover-focus'); };
+
+    card.addEventListener('mouseenter', activate);
+    card.addEventListener('mouseleave', deactivate);
+    card.addEventListener('focusin', activate);
+    card.addEventListener('focusout', deactivate);
+  });
+});
+</script>
+
 </body>
 </html>
