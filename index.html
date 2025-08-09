@@ -14,80 +14,76 @@
     }
 
     body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #ffffff;
-  color: #111;
-  line-height: 1.6;
-}
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
+    }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* NEW */
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #ddd;
-  width: 100%;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      width: 100%;
+    }
 
-.logo-container {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.75rem;
-  flex: 1 1 auto; /* NEW: allows it to shrink/grow nicely */
-  min-width: 0;   /* NEW: prevents it from overflowing */
-}
+    .logo-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
-.logo {
-  width: 420px;
-  height: auto;
-}
-.site-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: #004080;
-  white-space: nowrap;
-  padding-bottom: 0.2rem;
-}
+    .logo {
+      width: 420px;
+      height: auto;
+    }
+    .site-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #004080;
+      white-space: nowrap;
+      padding-bottom: 0.2rem;
+    }
 
-.header-center {
-  display: flex;
-  justify-content: center;
-  flex: 1 1 auto; /* NEW */
-  min-width: 0;   /* NEW */
-}
+    .header-center {
+      display: flex;
+      justify-content: center;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
+    .header-center nav {
+      display: flex;
+      gap: 3rem;
+    }
 
-.header-center nav {
-  display: flex;
-  gap: 3rem; /* increase this value to spread the menu items more */
-}
+    .header-right {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
-.header-right {
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  flex: 1 1 auto; /* NEW */
-  min-width: 0;   /* NEW */
-}
-
-.request-button {
-  background: none;       /* Removes brown background box */
-  color: #111;            /* Matches nav link color */
-  padding: 0;              /* Removes extra space around text */
-  border: none;           /* Removes any border */
-  font-weight: 600;       /* Matches the nav font weight */
-  font-size: 1rem;        /* Matches nav font size */
-  cursor: pointer;        /* Keeps the clickable hand cursor */
-  text-decoration: none;  /* No underline (same as nav links) */
-}
-
-.request-button:hover {
-  text-decoration: underline; /* Adds underline on hover like nav links */
-}
+    .request-button {
+      background: none;
+      color: #111;
+      padding: 0;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .request-button:hover { text-decoration: underline; }
 
     nav a {
       text-decoration: none;
@@ -96,34 +92,34 @@ header {
       font-size: 1rem;
     }
 
-/* Full-bleed hero video — single source of truth */
-.video-section {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  margin-left: calc(50% - 50vw); /* break out of any page gutters */
-  margin-right: calc(50% - 50vw);
-  padding: 0;
-  overflow: hidden;
-}
+    /* Full-bleed hero video — single source of truth */
+    .video-section {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 0;
+      overflow: hidden;
+      background: #000; /* prevents thin gutters on some displays */
+    }
 
-.background-video {
-  position: absolute;
-  inset: 0;          /* top/right/bottom/left: 0 */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;     /* removes inline-video gap */
-  z-index: -1;
-}
+    .background-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: -1;
+    }
 
-/* keep this one, delete the duplicate later in the file */
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
+    /* keep this one */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
 
     .video-overlay {
       display: flex;
@@ -193,11 +189,7 @@ html, body {
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
 
     .service-item {
       background: #fff;
@@ -208,11 +200,7 @@ html, body {
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .service-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
+    .service-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
 
     .service-item img {
       width: 100%;
@@ -221,19 +209,51 @@ html, body {
       border-bottom: 1px solid #eee;
     }
 
-    .service-description {
-      padding: 1rem;
+    .service-description { padding: 1rem; }
+    .service-description h3 { margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 700; }
+    .service-description p { font-size: 0.95rem; color: #444; }
+
+    /* --- NEW: About section (text left, video right) --- */
+    .about-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr; /* text a bit wider */
+      gap: 2rem;
+      align-items: end; /* keeps the video aligned toward the bottom */
+    }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      color: #004080;
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .about-text p {
+      font-size: 1rem;
+      color: #333;
+    }
+    .about-media {
+      width: 100%;
+      align-self: end; /* bottom-align the video column */
+    }
+    .about-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
-    .service-description h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-      font-weight: 700;
+    /* Responsive: stack on small screens */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-section { grid-template-columns: 1fr; }
+      .about-media { order: 2; }
+      .about-text { order: 1; }
     }
-
-    .service-description p {
-      font-size: 0.95rem;
-      color: #444;
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: 1fr; }
     }
 
     footer {
@@ -243,49 +263,45 @@ html, body {
       font-size: 0.9rem;
       color: #555;
     }
-    html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-.search-icon {
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  cursor: pointer;
-  color: #004080;
-  padding: 0.2rem 0.5rem;
-  transition: transform 0.2s ease;
-}
-.search-icon:hover {
-  transform: scale(1.2);
-}
-#services h2 {
-  display: block;
-  margin-bottom: 40px; /* Adds 40px space under heading */
-}
+
+    .search-icon {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #004080;
+      padding: 0.2rem 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .search-icon:hover { transform: scale(1.2); }
+
+    #services h2 {
+      display: block;
+      margin-bottom: 40px;
+    }
   </style>
 </head>
 <body>
- <header>
-  <div class="logo-container">
- <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/LOGO_Edited.name2.jpg" alt="Resolution Tech Constructions Logo"/>
-</div>
-  <div class="header-center">
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#advantage">AI Advantage</a>
-      <a href="#contact">Contact</a>
-      <a href="#firm">Our Firm</a>
-      <a href="#locations">Our Locations</a>
-    </nav>
-  </div>
- <div class="header-right">
- <button class="search-icon" title="Search">
-  <i class="fas fa-search"></i>
-</button>
-  <button class="request-button">Request a Proposal</button>
-</div>
-  <!-- Keep the rest of your code from here onward unchanged (video, sections, services, footer, etc.) -->
+  <header>
+    <div class="logo-container">
+      <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/LOGO_Edited.name2.jpg" alt="Resolution Tech Constructions Logo"/>
+    </div>
+    <div class="header-center">
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#advantage">AI Advantage</a>
+        <a href="#contact">Contact</a>
+        <a href="#firm">Our Firm</a>
+        <a href="#locations">Our Locations</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <button class="search-icon" title="Search">
+        <i class="fas fa-search"></i>
+      </button>
+      <button class="request-button">Request a Proposal</button>
+    </div>
+  </header>
 
   <section class="video-section">
     <video autoplay muted loop playsinline class="background-video">
@@ -322,9 +338,9 @@ html, body {
   </section>
 
   <!-- Services Section -->
-<section class="features" id="services">
-  <h2 style="text-align: center">Our Services</h2>
-  <div class="services-grid">
+  <section class="features" id="services">
+    <h2 style="text-align: center">Our Services</h2>
+    <div class="services-grid">
       <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Structural%20engineering%20services.png"><div class="service-description"><h3>Structural Analysis and Design</h3><p>Safe, code-compliant structural systems designed for new buildings or for strengthening existing ones.</p></div></div>
       <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20envelope.png"><div class="service-description"><h3>Restoration and Rehabilitation Services</h3><p>Aged, damaged, or deteriorated buildings are evaluated and restored to ensure long-term safety and performance.</p></div></div>
       <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Special%20inspections.png"><div class="service-description"><h3>Forensic Engineering and Expert Reports</h3><p>Root causes of structurak failures are uncovered and documented for insurance, legal, and technical purposes.</p></div></div>
@@ -340,6 +356,20 @@ html, body {
       <div class="service-item"><img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20envelope.png"><div class="service-description"><h3>Additional Services</h3><p>Covers a wide range of construction-related support beyond the listed categories—tailored solutions for unique project needs.</p></div></div>
     </div>
   </section>
+
+<!-- NEW: About Us (text left, video right) -->
+<section class="about-section" id="about">
+  <div class="about-text">
+    <h2>About Us</h2>
+    <p>Resolution Tech Constructions blends structural engineering expertise with practical AI to deliver faster, safer, and more reliable outcomes. Our strategy is simple: automate what machines do best, so our engineers can focus on judgment, quality, and risk. We standardize workflows, use data to anticipate issues before they surface, and design resilient solutions that stand up to real-world constraints. From façade rehabilitation to forensic analysis and construction administration, our goal is consistent performance—clear communication, disciplined execution, and measurable value on every project.</p>
+  </div>
+  <div class="about-media">
+    <video autoplay muted loop playsinline>
+      <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Aeroplane_Flies_Over_States_Drops_Markers.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
 
   <footer>
     &copy; 2025 Resolution Tech Constructions. All rights reserved.
