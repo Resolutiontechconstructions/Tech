@@ -104,15 +104,22 @@
       background: #000; /* prevents thin gutters on some displays */
     }
 
-    .background-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      z-index: -1;
-    }
+  /* hero video layer fix */
+.background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;            /* was -1 */
+}
+
+.video-overlay {
+  position: relative;    /* add this */
+  z-index: 1;            /* ensure overlay sits above the video */
+}
+
 
     /* keep this one */
     html, body {
@@ -304,7 +311,7 @@
   </header>
 
   <section class="video-section">
-    <video autoplay muted loop playsinline class="background-video">
+<video autoplay muted loop playsinline preload="auto" class="background-video">
       <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Resolutiontechmainvideop.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -364,10 +371,10 @@
     <p>Resolution Tech Constructions blends structural engineering expertise with practical AI to deliver faster, safer, and more reliable outcomes. Our strategy is simple: automate what machines do best, so our engineers can focus on judgment, quality, and risk. We standardize workflows, use data to anticipate issues before they surface, and design resilient solutions that stand up to real-world constraints. From façade rehabilitation to forensic analysis and construction administration, our goal is consistent performance—clear communication, disciplined execution, and measurable value on every project.</p>
   </div>
   <div class="about-media">
-    <video autoplay muted loop playsinline>
-      <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Aeroplane_Flies_Over_States_Drops_Markers.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <video autoplay muted loop playsinline preload="metadata">
+  <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Aeroplane_Flies_Over_States_Drops_Markers.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
   </div>
 </section>
 
