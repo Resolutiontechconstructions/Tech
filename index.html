@@ -675,7 +675,7 @@
   <footer>
     &copy; 2025 Resolution Tech Constructions. All rights reserved.
   </footer>
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
   const map = new Map([
     ["Structural Analysis and Design", [
@@ -740,18 +740,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = titleEl ? titleEl.textContent.trim() : "Services";
     const items = map.get(title) || ["Scope A","Scope B","Scope C","Scope D","Scope E","Scope F"];
 
-    // Build dropdown
+    // Build dropdown (FIX: use template literals)
     const drop = document.createElement('div');
     drop.className = 'service-drop';
-    drop.innerHTML = 
+    drop.innerHTML = `
       <h4>${title}</h4>
-      <ul>${items.map(i => <li>${i}</li>).join('')}</ul>
-    ;
+      <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
+    `;
+    // Avoid duplicates if script runs twice (hot reload, etc.)
+    const existing = card.querySelector('.service-drop');
+    if (existing) existing.remove();
     card.appendChild(drop);
 
     // Blur overlay toggle on hover/focus
-    const activate = () => { overlay.classList.add('active'); card.classList.add('hover-focus'); };
-    const deactivate = () => { overlay.classList.remove('active'); card.classList.remove('hover-focus'); };
+    const activate = () => {
+      overlay?.classList.add('active');
+      card.classList.add('hover-focus');
+    };
+    const deactivate = () => {
+      overlay?.classList.remove('active');
+      card.classList.remove('hover-focus');
+    };
 
     card.addEventListener('mouseenter', activate);
     card.addEventListener('mouseleave', deactivate);
@@ -760,6 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 
 </body>
 </html>
