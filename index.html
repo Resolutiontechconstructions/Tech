@@ -728,6 +728,14 @@ document.addEventListener('DOMContentLoaded', () => {
       "Moisture intrusion investigations",
       "More services …"
     ]],
+    ["Moisture Intrusion and Envelope Diagnostics", [
+      "Leak Mapping",
+      "Infrared Scans",
+      "Probe Openings",
+      "Window/Wall Interface",
+      "Roof/Wall Transitions",
+      "Vapor/Drainage Paths"
+    ]],
     ["Roofing and Flashing Assessment Services", [
       "Roof condition assessment",
       "Moisture intrusion investigations",
@@ -745,35 +753,30 @@ document.addEventListener('DOMContentLoaded', () => {
       "More services …"
     ]]
   ]);
+
   const cards = document.querySelectorAll('.service-item');
   const overlay = document.getElementById('blur-overlay');
 
   cards.forEach(card => {
     const titleEl = card.querySelector('.service-description h3');
     const title = titleEl ? titleEl.textContent.trim() : "Services";
-    const items = map.get(title) || ["Scope A","Scope B","Scope C","Scope D","Scope E","Scope F"];
+    const items = map.get(title) || [];
 
-    // Build dropdown (FIX: use template literals)
+    if (!items.length) return; // skip if not in map
+
+    const existing = card.querySelector('.service-drop');
+    if (existing) existing.remove();
+
     const drop = document.createElement('div');
     drop.className = 'service-drop';
     drop.innerHTML = `
       <h4>${title}</h4>
       <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
     `;
-    // Avoid duplicates if script runs twice (hot reload, etc.)
-    const existing = card.querySelector('.service-drop');
-    if (existing) existing.remove();
     card.appendChild(drop);
 
-    // Blur overlay toggle on hover/focus
-    const activate = () => {
-      overlay?.classList.add('active');
-      card.classList.add('hover-focus');
-    };
-    const deactivate = () => {
-      overlay?.classList.remove('active');
-      card.classList.remove('hover-focus');
-    };
+    const activate = () => { overlay.classList.add('active'); card.classList.add('hover-focus'); };
+    const deactivate = () => { overlay.classList.remove('active'); card.classList.remove('hover-focus'); };
 
     card.addEventListener('mouseenter', activate);
     card.addEventListener('mouseleave', deactivate);
@@ -782,7 +785,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-
-
 </body>
 </html>
