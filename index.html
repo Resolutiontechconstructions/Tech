@@ -256,18 +256,17 @@
   color: #004080;
 }
 .service-drop ul {
-  list-style: none;
+  list-style: disc;        /* bullet style */
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 16px;
+  padding-left: 1.2rem;    /* indent bullets */
+  display: block;          /* remove grid */
 }
 .service-drop li {
   font-size: 0.95rem;
   color: #333;
+  margin-bottom: 6px;      /* spacing between items */
+  text-align: left;        /* align text neatly */
 }
-
 /* full-page blur overlay */
 #blur-overlay {
   position: fixed;
