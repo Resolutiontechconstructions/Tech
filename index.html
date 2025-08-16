@@ -328,6 +328,53 @@
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
+    :root{
+  /* tweak this if you want a slightly lighter/darker match */
+  --brand-blue: #0D3B66;          /* deep blue to match your mock */
+  --brand-blue-ink: #EAF2FB;      /* readable light text */
+}
+
+/* About: layout unchanged, just ensure the columns align nicely */
+.about-section{
+  align-items: start;             /* keeps the two columns aligned at the top */
+}
+
+/* Blue filled rectangular box around the About text */
+.about-card{
+  background: var(--brand-blue);
+  color: var(--brand-blue-ink);
+  padding: 1.5rem 1.75rem;
+  border-radius: 12px;            /* make 0 if you want perfectly square corners */
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.about-card h2{
+  color: #FFFFFF;
+  margin-bottom: .6rem;
+}
+
+.about-card p{
+  color: var(--brand-blue-ink);
+}
+
+/* Framed video that matches the photo’s border treatment */
+.framed-video{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  border: 3px solid var(--brand-blue);         /* outer stroke */
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25),              /* drop shadow */
+    inset 0 0 0 4px rgba(255,255,255,0.06);    /* subtle inner ring like the mock */
+}
+
+/* Ensure the blue box doesn’t look oversized on small screens */
+@media (max-width: 900px){
+  .about-card{ border-radius: 10px; }
+}
+
 
     /* Responsive: stack on small screens */
     @media (max-width: 900px) {
@@ -585,20 +632,25 @@
 </section>
 
 <!-- NEW: About Us (text left, video right) -->
+<!-- NEW: About Us (text left, video right) -->
 <section class="about-section" id="about">
   <div class="about-text">
-    <h2>About Us</h2>
-    <p>At Resolution Tech Constructions, we employ innovative and highly efficient calculation methodologies to deliver accurate and reliable results. Through the successful automation of non-engineering project costs, we enable greater focus on human-centered engineering innovation.
-With a diverse range of expertise on board, Resolution Tech has the capacity to anticipate and address challenges both prior to and during project execution. By leveraging advanced technology and data-driven models to foresee potential failures, we help reduce future project costs significantly.
-Utilizing AI-driven models, we provide clients with precise, cost-effective solutions while ensuring higher quality and performance across all deliverables.
-</p>
+    <div class="about-card">
+      <h2>About Us</h2>
+      <p>At Resolution Tech Constructions, we employ innovative and highly efficient calculation methodologies to deliver accurate and reliable results. Through the successful automation of non-engineering project costs, we enable greater focus on human-centered engineering innovation.
+      <br><br>
+      With a diverse range of expertise on board, Resolution Tech has the capacity to anticipate and address challenges both prior to and during project execution. By leveraging advanced technology and data-driven models to foresee potential failures, we help reduce future project costs significantly.
+      <br><br>
+      Utilizing AI-driven models, we provide clients with precise, cost-effective solutions while ensuring higher quality and performance across all deliverables.</p>
+    </div>
   </div>
+
   <div class="about-media">
-  <video autoplay muted loop playsinline preload="metadata">
-  <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Aeroplane_Flies_Over_States_Drops_Markers.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-   </div>
+    <video class="framed-video" autoplay muted loop playsinline preload="metadata">
+      <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Aeroplane_Flies_Over_States_Drops_Markers.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 </section>
 <!-- Contact / Request a Proposal -->
 <section class="contact-section" id="contact">
