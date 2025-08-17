@@ -498,7 +498,44 @@
 @media (max-width: 800px) {
   .contact-form { grid-template-columns: 1fr; }
 }
+/* === Compact header/ribbon === */
+:root{
+  --header-logo-h: 44px;  /* desktop logo height */
+  --header-py: 8px;       /* vertical padding */
+  --header-px: 16px;      /* horizontal padding */
+}
 
+header{
+  padding: var(--header-py) var(--header-px);
+}
+
+.logo{
+  height: var(--header-logo-h);
+  width: auto;
+}
+
+.header-center nav{ gap: 1.5rem; }
+
+nav a,
+.request-button{
+  line-height: 1.1;
+  padding: 0.125rem 0;
+}
+
+.header-right{ gap: 0.75rem; }
+
+@media (min-width: 900px){
+  header{ flex-wrap: nowrap; }
+}
+
+@media (max-width: 600px){
+  :root{
+    --header-logo-h: 36px;
+    --header-py: 6px;
+    --header-px: 12px;
+  }
+  .header-center nav{ gap: 1rem; }
+}
   </style>
 </head>
 <body>
