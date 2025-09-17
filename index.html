@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <link rel="alternate" media="only screen and (max-width: 768px)" href="mobile.html">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resolution Tech Constructions</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Redirect phones to mobile.html, unless ?force=desktop -->
+  <script>
+  (function(){
+    const params = new URLSearchParams(location.search);
+    if (params.get('force') === 'desktop') return;
+    if (/\/mobile\.html$/i.test(location.pathname)) return;  // safety
+    const isSmall = Math.min(window.innerWidth, screen.width) <= 768;
+    const isUAMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isSmall || isUAMobile) location.href = 'mobile.html';
+  })();
+  </script>
   <style>
     * {
       margin: 0;
