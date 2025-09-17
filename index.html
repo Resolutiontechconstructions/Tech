@@ -2,172 +2,566 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resolution Tech Constructions</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* --- Base / reset --- */
-    *,*::before,*::after{ box-sizing: border-box; }
-    html, body{ margin:0; padding:0; width:100%; max-width:100%; overflow-x:hidden; }
-    body{ font-family:'Open Sans',sans-serif; background:#fff; color:#111; line-height:1.6; }
-
-    /* --- Design tokens --- */
-    :root{
-      --brand-blue:#0D3B66;
-      --brand-blue-ink:#EAF2FB;
-      --container: min(1200px, 100%);
-      --pad: clamp(12px, 4vw, 28px);
-      --fs-sm: clamp(14px, 1.6vw, 16px);
-      --fs-md: clamp(16px, 2vw, 18px);
-      --fs-lg: clamp(22px, 3.2vw, 32px);
-      --fs-xl: clamp(28px, 5vw, 44px);
-      --header-h: 64px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .container{ width:var(--container); margin-inline:auto; padding-inline:var(--pad); }
-
-    /* --- Header / Nav (mobile-first) --- */
-    header{ position:sticky; top:0; z-index:100; background:#fff; border-bottom:1px solid #ddd; }
-    .header-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; height:var(--header-h); }
-    .logo{ height: clamp(32px, 6vw, 48px); width:auto; display:block; }
-
-    /* Hamburger */
-    #nav-toggle{ display:none; }
-    .hamburger{ display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; cursor:pointer; border-radius:8px; border:1px solid #e6e6e6; }
-    .hamburger i{ font-size:1.1rem; color:#004080; }
-
-    nav.site-nav{ position:fixed; inset:var(--header-h) 0 auto 0; background:#fff; border-top:1px solid #eee; display:none; padding:12px var(--pad) 24px; }
-    nav.site-nav ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
-    nav.site-nav a{ text-decoration:none; color:#111; font-weight:600; font-size:var(--fs-md); padding:10px 8px; border-radius:8px; }
-    nav.site-nav a:hover{ background:#f4f6f8; }
-    #nav-toggle:checked ~ nav.site-nav{ display:block; }
-
-    .header-right{ display:flex; align-items:center; gap:10px; }
-    .search-icon{ background:none; border:1px solid #e6e6e6; font-size:1.05rem; cursor:pointer; color:#004080; padding:.45rem .6rem; border-radius:8px; }
-
-    /* Desktop nav */
-    @media (min-width: 900px){
-      .hamburger{ display:none; }
-      nav.site-nav{ position:static; display:block; border:0; padding:0; }
-      nav.site-nav ul{ flex-direction:row; gap: clamp(14px, 3vw, 28px); }
-      nav.site-nav a{ padding:0; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
     }
 
-    /* --- Hero (video) --- */
-    .video-section{ position:relative; height: min(100dvh, 820px); width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); overflow:hidden; background:#000; }
-    .background-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; z-index:0; }
-    .video-overlay{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; height:100%; padding: clamp(16px, 5vw, 48px); background:rgba(0,0,0,.38); }
-    .hero-content{ color:#fff; text-align:center; width:min(900px, 100%); padding-inline: var(--pad); }
-    .hero-content h1{ font-size: var(--fs-xl); line-height:1.15; margin:0 0 .5rem 0; }
-    .hero-content h2{ font-size: var(--fs-lg); font-weight:400; margin:0 0 .75rem 0; }
-    .hero-content p{ font-size: var(--fs-md); margin:0 0 1.1rem 0; }
-    .cta-button{ padding:.85rem 1.3rem; background:#008080; color:#fff; border:none; border-radius:8px; font-size: var(--fs-md); cursor:pointer; }
-
-    /* --- Sections --- */
-    section.features, section.tech, section.process, section.contact, footer{ padding: clamp(36px, 6vw, 64px) var(--pad); }
-    section.features > .container{ max-width:1200px; }
-
-    .features-grid{ display:grid; gap: clamp(12px, 3vw, 24px); grid-template-columns: 1fr; }
-    @media (min-width:700px){ .features-grid{ grid-template-columns: repeat(3, 1fr); } }
-
-    /* Services grid: 1 → 2 → 4 cols */
-    .services-grid{ display:grid; gap: clamp(12px, 3vw, 24px); grid-template-columns: 1fr; overflow: visible; }
-    @media (min-width:700px){ .services-grid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width:1024px){ .services-grid{ grid-template-columns: repeat(4, 1fr); } }
-
-    .card{ background:#f9f9f9; padding:1.25rem; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,.05); text-align:center; transition:transform .3s ease, box-shadow .3s ease; }
-    .card:hover{ transform:translateY(-6px); box-shadow:0 18px 36px rgba(0,0,0,.12); }
-
-    .service-item{ background:#fff; border:1px solid #ddd; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,.05); overflow:hidden; text-align:center; transition:transform .25s ease, box-shadow .25s ease; position:relative; }
-    .service-item:hover{ transform:translateY(-6px); box-shadow:0 18px 36px rgba(0,0,0,.12); }
-    .service-item img{ width:100%; height:200px; object-fit:cover; border-bottom:1px solid #eee; display:block; }
-    .service-description{ padding:1rem; }
-    .service-description h3{ margin-bottom:.4rem; font-size:1.1rem; font-weight:700; }
-    .service-description p{ font-size:.97rem; color:#444; }
-
-    /* Dropdown panel for desktop; turn into tap-to-expand on mobile */
-    .service-drop{ position:absolute; left:50%; top:100%; transform:translateX(-50%); width:min(420px,92vw); background:#fff; border:1px solid #e6e6e6; border-radius:12px; box-shadow:0 24px 60px rgba(0,0,0,.12); padding:14px 16px; max-height:0; overflow:hidden; opacity:0; pointer-events:none; transition:max-height .25s ease, opacity .2s ease, transform .2s ease; }
-    .service-drop h4{ margin:0 0 8px; font-size:1rem; color:#004080; }
-    .service-drop ul{ list-style:disc; margin:0; padding-left:1.2rem; display:block; }
-    .service-drop li{ font-size:.95rem; color:#333; margin-bottom:6px; text-align:left; }
-
-    /* Page blur */
-    #blur-overlay{ position:fixed; inset:0; backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); background:rgba(255,255,255,.2); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:1000; }
-    #blur-overlay.active{ opacity:1; }
-
-    /* Desktop hover reveal */
-    @media (hover:hover) and (pointer:fine){
-      .service-item:hover .service-drop{ max-height:320px; opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(8px); }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      width: 100%;
     }
 
-    /* Mobile: disable hover dropdown and use accordion style */
-    @media (max-width: 899.98px){
-      .service-item .service-drop{ position:static; transform:none; width:100%; border:0; border-top:1px solid #eee; box-shadow:none; max-height:0; opacity:1; pointer-events:auto; }
-      .service-item.expanded .service-drop{ max-height:420px; }
-      .service-description{ cursor:pointer; }
+    .logo-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
-    /* About section (single framed rectangle around both columns) */
-    .about-section{ background:var(--brand-blue); border:1px solid rgba(255,255,255,.08); border-radius:12px; box-shadow:0 10px 28px rgba(0,0,0,.18); color:var(--brand-blue-ink); display:grid; grid-template-columns:1fr; gap:1.25rem; padding: clamp(16px, 4vw, 32px); width:var(--container); margin: 0 auto 2rem auto; }
-    @media (min-width:900px){ .about-section{ grid-template-columns:1.1fr .9fr; gap:2rem; } }
-    .about-text h2{ font-family:'Playfair Display',serif; color:#fff; font-size:var(--fs-lg); margin:.2rem 0 .6rem; }
-    .about-text p{ color:var(--brand-blue-ink); font-size:var(--fs-md); }
-    .framed-video{ width:100%; height:auto; display:block; border-radius:14px; border:3px solid rgba(255,255,255,.14); box-shadow: 0 10px 24px rgba(0,0,0,.20), inset 0 0 0 4px rgba(255,255,255,.06); }
+    .logo {
+      width: 420px;
+      height: auto;
+    }
+    .site-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #004080;
+      white-space: nowrap;
+      padding-bottom: 0.2rem;
+    }
 
-    /* Contact */
-    .contact-section{ background:#f0f0f0; border:2px solid #ccc; border-radius:8px; }
-    .contact-section .container{ max-width:1200px; }
-    .contact-section h2{ font-family:'Playfair Display',serif; color:#004080; font-size:var(--fs-lg); margin-bottom:.6rem; text-align:left; }
-    .contact-intro{ color:#333; margin-bottom:1rem; }
-    .contact-form{ display:grid; grid-template-columns:1fr; gap:1rem 1.25rem; }
-    @media (min-width:800px){ .contact-form{ grid-template-columns:1fr 1fr; } }
-    .contact-form .full{ grid-column:1 / -1; }
-    .contact-form label{ display:block; font-size:.9rem; font-weight:600; margin-bottom:.35rem; color:#222; }
-    .contact-form input, .contact-form select, .contact-form textarea{ width:100%; padding:.75rem .9rem; border:1px solid #ddd; border-radius:8px; font:inherit; background:#fff; }
-    .contact-form textarea{ min-height:140px; resize:vertical; }
-    .contact-actions{ display:flex; gap:.75rem; }
-    .contact-submit{ padding:.85rem 1.25rem; background:#008080; color:#fff; border:0; border-radius:8px; cursor:pointer; font-weight:600; }
-    .contact-submit:hover{ filter:brightness(.95); }
+    .header-center {
+      display: flex;
+      justify-content: center;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
-    /* Footer */
-    footer{ background:#f1f1f1; text-align:center; font-size:.95rem; color:#555; }
+    .header-center nav {
+      display: flex;
+      gap: 3rem;
+    }
 
-    /* Utilities */
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .header-right {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .request-button {
+      background: none;
+      color: #111;
+      padding: 0;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .request-button:hover { text-decoration: underline; }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Full-bleed hero video — single source of truth */
+    .video-section {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 0;
+      overflow: hidden;
+      background: #000; /* prevents thin gutters on some displays */
+    }
+
+  /* hero video layer fix */
+.background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;            /* was -1 */
+}
+
+.video-overlay {
+  position: relative;    /* add this */
+  z-index: 1;            /* ensure overlay sits above the video */
+}
+
+
+    /* keep this one */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .video-overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 3rem 2rem;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      max-width: 900px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content h2 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      padding: 0.8rem 1.5rem;
+      background-color: #008080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .features, .tech, .process, .contact, footer {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .card {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+
+    .service-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+/* ===== Services hover zoom + dropdown + page blur ===== */
+.service-item {
+  position: relative;            /* anchor dropdown */
+  overflow: visible;             /* allow dropdown outside card */
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.service-item.hover-focus,
+.service-item:hover {
+  transform: scale(1.04);
+  z-index: 1001;                 /* above the blur overlay */
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+}
+
+/* dropdown panel (injected by JS) */
+.service-drop {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: min(420px, 92vw);
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+  padding: 14px 16px;
+  max-height: 0;                 /* collapsed by default */
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height .25s ease, opacity .2s ease, transform .2s ease;
+}
+
+/* reveal on hover/focus */
+.service-item:hover .service-drop,
+.service-item.hover-focus .service-drop {
+  max-height: 320px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.service-drop h4 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #004080;
+}
+.service-drop ul {
+  list-style: disc;        /* bullet style */
+  margin: 0;
+  padding-left: 1.2rem;    /* indent bullets */
+  display: block;          /* remove grid */
+}
+.service-drop li {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 6px;      /* spacing between items */
+  text-align: left;        /* align text neatly */
+}
+/* full-page blur overlay */
+#blur-overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  background: rgba(255,255,255,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 1000;                 /* sits under focused card */
+}
+
+/* activate blur */
+#blur-overlay.active { opacity: 1; }
+
+/* allow dropdowns to flow outside the grid */
+.services-grid { overflow: visible; }
+
+    .service-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+
+    .service-description { padding: 1rem; }
+    .service-description h3 { margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 700; }
+    .service-description p { font-size: 0.95rem; color: #444; }
+
+    /* --- NEW: About section (text left, video right) --- */
+    .about-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr; /* text a bit wider */
+      gap: 2rem;
+      align-items: end; /* keeps the video aligned toward the bottom */
+    }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      color: #004080;
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .about-text p {
+      font-size: 1rem;
+      color: #333;
+    }
+    .about-media {
+      width: 100%;
+      align-self: end; /* bottom-align the video column */
+    }
+    .about-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+   :root{
+  --brand-blue: #0D3B66;
+  --brand-blue-ink: #EAF2FB;
+}
+
+/* Make the rectangle enclose BOTH columns */
+.about-section{
+  /* existing layout props kept */
+  padding: 2rem;                 /* inner breathing room for the box */
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+
+  /* the blue box */
+  background: var(--brand-blue);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+  color: var(--brand-blue-ink);
+  align-items: center;           /* keep text & video nicely aligned */
+}
+
+/* Since the whole section is now blue, make the inner “card” transparent */
+.about-card{
+  background: transparent;
+  color: inherit;
+  padding: 0;                    /* remove inner padding so spacing comes from .about-section */
+  border: none;
+  box-shadow: none;
+}
+
+/* Typography colors inside the blue box */
+.about-text h2{
+  color: #fff;
+  margin-bottom: .6rem;
+}
+.about-text p{
+  color: var(--brand-blue-ink);
+}
+
+/* Video styling: keep the nice frame but avoid competing shadows */
+.about-media{ width: 100%; }
+.about-media video{ box-shadow: none; }  /* turn off the old shadow */
+
+/* Keep the clean framed look that matches your mock */
+.framed-video{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  border: 3px solid rgba(255,255,255,0.14);   /* subtle light ring on blue */
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.20),
+    inset 0 0 0 4px rgba(255,255,255,0.06);
+}
+
+/* Responsive: stack while keeping the single rectangle */
+@media (max-width: 900px){
+  .about-section{
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+  .framed-video{ border-radius: 10px; }
+}
+@media (max-width: 560px){
+  .about-section{ padding: 1.25rem; }
+}
+
+
+    footer {
+      background: #f1f1f1;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  
+  /* Center the final single card under a 4×2 grid */
+  .services-grid .last-center {
+    grid-column: 2 / span 2;     /* spans columns 2–3 on a 4-col grid */
+    justify-self: center;
+  }
+
+  /* Responsive centering for smaller screens */
+  @media (max-width: 900px) {
+    .services-grid .last-center {
+      grid-column: 1 / -1;       /* full width on 2-col layout */
+    }
+  }
+  @media (max-width: 560px) {
+    .services-grid .last-center {
+      grid-column: 1 / -1;       /* full width on 1-col layout */
+    }
+  }
+
+    .search-icon {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #004080;
+      padding: 0.2rem 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .search-icon:hover { transform: scale(1.2); }
+
+    #services h2 {
+      display: block;
+      margin-bottom: 40px;
+    }
+    /* --- Contact form (bottom) --- */
+.contact-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  background-color: #f0f0f0; /* light gray background */
+  border: 2px solid #ccc;     /* border around the section */
+  border-radius: 8px;         /* optional: rounded corners */
+}
+.contact-section h2 {
+  font-family: 'Playfair Display', serif;
+  color: #004080;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+.contact-intro {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+.contact-form .full { grid-column: 1 / -1; }
+.contact-form label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #222;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+.contact-form textarea { min-height: 140px; resize: vertical; }
+.contact-actions { display: flex; gap: 0.75rem; }
+.contact-submit {
+  padding: 0.85rem 1.25rem;
+  background: #008080;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.contact-submit:hover { filter: brightness(0.95); }
+@media (max-width: 800px) {
+  .contact-form { grid-template-columns: 1fr; }
+}
+/* === Compact header/ribbon === */
+:root{
+  --header-logo-h: 44px;  /* desktop logo height */
+  --header-py: 8px;       /* vertical padding */
+  --header-px: 16px;      /* horizontal padding */
+}
+
+header{
+  padding: var(--header-py) var(--header-px);
+}
+
+.logo{
+  height: var(--header-logo-h);
+  width: auto;
+}
+
+.header-center nav{ gap: 1.5rem; }
+
+nav a,
+.request-button{
+  line-height: 1.1;
+  padding: 0.125rem 0;
+}
+
+.header-right{ gap: 0.75rem; }
+
+@media (min-width: 900px){
+  header{ flex-wrap: nowrap; }
+}
+
+@media (max-width: 600px){
+  :root{
+    --header-logo-h: 36px;
+    --header-py: 6px;
+    --header-px: 12px;
+  }
+  .header-center nav{ gap: 1rem; }
+}
   </style>
 </head>
 <body>
 <header>
-  <div class="container header-inner">
-    <a href="#" class="logo-link" aria-label="Resolution Tech Constructions">
-      <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/LOGO_Edited.name2.jpg" alt="Resolution Tech Constructions Logo"/>
-    </a>
+  <div class="logo-container">
+    <img class="logo" src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/LOGO_Edited.name2.jpg" alt="Resolution Tech Constructions Logo"/>
+  </div>
 
-    <!-- Mobile menu toggle -->
-    <label for="nav-toggle" class="hamburger" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></label>
-    <input id="nav-toggle" type="checkbox" aria-hidden="true" />
-
-    <nav class="site-nav">
-      <ul class="container">
-        <li><a href="#advantage" onclick="closeMenu()">AI Advantage</a></li>
-        <li><a href="#services" onclick="closeMenu()">Our Services</a></li>
-        <li><a href="#about" onclick="closeMenu()">About us</a></li>
-        <li><a href="#locations" onclick="closeMenu()">Our Locations</a></li>
-        <li><a href="#contact" onclick="closeMenu()">Request a Proposal</a></li>
-        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-      </ul>
+  <div class="header-center">
+    <nav>
+      <a href="#advantage">AI Advantage</a>
+      <a href="#services">Our Services</a>
+      <a href="#about">About us</a>
+      <a href="#locations">Our Locations</a>
+      <a href="#contact" class="request-button">Request a Proposal</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </div>
 
-    <div class="header-right">
-      <button class="search-icon" title="Search" aria-label="Search">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
+  <div class="header-right">
+    <button class="search-icon" title="Search" aria-label="Search">
+      <i class="fas fa-search"></i>
+    </button>
   </div>
 </header>
-
-<section class="video-section" aria-label="Hero">
+<section class="video-section">
   <video autoplay muted loop playsinline preload="auto" class="background-video">
     <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Resolutiontechmainvideop.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -177,98 +571,126 @@
       <h1>Resolution Tech Constructions</h1>
       <h2>Engineering the future with artificial intelligence</h2>
       <p>Delivering premium construction solutions across residential, commercial, and industrial sectors with unmatched precision and efficiency.</p>
-      <a href="#advantage" class="cta-button">Explore AI Advantage</a>
+      <button class="cta-button">Explore AI Advantage</button>
     </div>
   </div>
 </section>
-
 <section class="features" id="advantage">
-  <div class="container">
-    <h2 style="text-align:center; font-size:var(--fs-lg);">The AI Advantage</h2>
-    <div class="features-grid" style="margin-top: clamp(12px, 3vw, 24px);">
-      <div class="card">
-        <h3>Time Optimization</h3>
-        <p>AI cuts project timelines by up to 40% by automating repetitive tasks, reducing admin work, and streamlining content creation.</p>
-      </div>
-      <div class="card">
-        <h3>Reduced Overhead</h3>
-        <p>AI reduces overhead by automating admin, management, and repetitive tasks — cutting labor hours and inefficiencies.</p>
-      </div>
-      <div class="card">
-        <h3>Error Prevention</h3>
-        <p>AI minimizes human errors by catching missed emails, calculation mistakes, and managerial oversights before they escalate.</p>
-      </div>
+  <h2 style="text-align: center">The AI Advantage</h2>
+  <div class="features-grid">
+    <div class="card">
+      <h3>Time Optimization</h3>
+      <p>AI cuts project timelines by up to 40% by automating repetitive tasks, reducing admin work, and streamlining content creation.</p>
+    </div>
+    <div class="card">
+      <h3>Reduced Overhead</h3>
+      <p>AI reduces overhead by automating admin, management, and repetitive tasks — cutting labor hours and inefficiencies.</p>
+    </div>
+    <div class="card">
+      <h3>Error Prevention</h3>
+      <p>AI minimizes human errors by catching missed emails, calculation mistakes, and managerial oversights before they escalate.</p>
     </div>
   </div>
 </section>
 
 <section class="features" id="services">
-  <div class="container">
-    <h2 style="text-align:center; font-size:var(--fs-lg);">Our Services</h2>
-    <div class="services-grid" style="margin-top: clamp(12px, 3vw, 24px);">
-      <!-- Structural Analysis and Design -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Steel%20Structure.png" alt="Structural Analysis and Design">
-        <div class="service-description"><h3>Structural Analysis and Design</h3><p>Safe, code-compliant structural systems designed for new buildings or for strengthening existing ones.</p></div>
+  <h2 style="text-align: center">Our Services</h2>
+  <div class="services-grid">
+    <!-- Structural Analysis and Design -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Steel%20Structure.png" alt="Structural Analysis and Design">
+      <div class="service-description">
+        <h3>Structural Analysis and Design</h3>
+        <p>Safe, code-compliant structural systems designed for new buildings or for strengthening existing ones.</p>
       </div>
+    </div>
 
-      <!-- Forensic Engineering and Expert Reports -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Forensic%20analysis.png" alt="Forensic Engineering and Expert Reports">
-        <div class="service-description"><h3>Forensic Engineering and Expert Reports</h3><p>Root causes of structural failures are uncovered and documented for insurance, legal, and technical purposes.</p></div>
+    <!-- Forensic Engineering and Expert Reports -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Forensic%20analysis.png" alt="Forensic Engineering and Expert Reports">
+      <div class="service-description">
+        <h3>Forensic Engineering and Expert Reports</h3>
+        <p>Root causes of structural failures are uncovered and documented for insurance, legal, and technical purposes.</p>
       </div>
+    </div>
 
-      <!-- Inspection and Compliance Services -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Inspection%20and%20Compliance%20Services.png" alt="Inspection and Compliance Services">
-        <div class="service-description"><h3>Inspection and Compliance Services</h3><p>Critical inspections and evaluations are conducted to confirm structural integrity and building code compliance.</p></div>
+    <!-- Inspection and Compliance Services -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Inspection%20and%20Compliance%20Services.png" alt="Inspection and Compliance Services">
+      <div class="service-description">
+        <h3>Inspection and Compliance Services</h3>
+        <p>Critical inspections and evaluations are conducted to confirm structural integrity and building code compliance.</p>
       </div>
+    </div>
 
-      <!-- Structural Construction Administration -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Structural%20Construction%20Administration.png" alt="Structural Construction Administration">
-        <div class="service-description"><h3>Structural Construction Administration</h3><p>Project execution is supported through submittal reviews, construction coordination, and field quality checks.</p></div>
+    <!-- Structural Construction Administration -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Structural%20Construction%20Administration.png" alt="Structural Construction Administration">
+      <div class="service-description">
+        <h3>Structural Construction Administration</h3>
+        <p>Project execution is supported through submittal reviews, construction coordination, and field quality checks.</p>
       </div>
+    </div>
 
-      <!-- Building Facade Assessment and Repair Services -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20Facade%20Assessment%20and%20Repair%20Services.png" alt="Building Facade Assessment and Repair Services">
-        <div class="service-description"><h3>Building Facade Assessment and Repair Services</h3><p>Exterior walls and façade systems are assessed and repairs are recommended.</p></div>
+    <!-- Building Facade Assessment and Repair Services -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Building%20Facade%20Assessment%20and%20Repair%20Services.png" alt="Building Facade Assessment and Repair Services">
+      <div class="service-description">
+        <h3>Building Facade Assessment and Repair Services</h3>
+        <p>Exterior walls and façade systems are assessed and repairs are recommended.</p>
       </div>
+    </div>
 
-      <!-- Solar Panel Services -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Solar%20panel%20services.png" alt="Solar Panel Services">
-        <div class="service-description"><h3>Solar Panel Services</h3><p>New solar panel installation at roof, facade, and open ground.</p></div>
+    <!-- Solar Panel Services -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Solar%20panel%20services.png" alt="Solar Panel Services">
+      <div class="service-description">
+        <h3>Solar Panel Services</h3>
+        <p>New solar panel installation at roof, facade, and open ground.</p>
       </div>
+    </div>
 
-      <!-- Roof Replacement & Repair Design -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Roofing%20design%20Services.png" alt="Roofing and Flashing Assessment Services">
-        <div class="service-description"><h3>Roof Replacement & Repair Design</h3><p>Roof conditions are evaluated and repair recommendations are provided to ensure protection from weather.</p></div>
+    <!-- Roof Replacement & Repair Design-->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Roofing%20design%20Services.png" alt="Roofing and Flashing Assessment Services">
+      <div class="service-description">
+        <h3>Roof Replacement & Repair Design</h3>
+        <p>Roof conditions are evaluated and repair recommendations are provided to ensure protection from weather.</p>
       </div>
+    </div>
 
-      <!-- Smart Drafting and BIM Modeling -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/CADD%20services.png" alt="Discipline Specific CAD Support">
-        <div class="service-description"><h3>Smart Drafting and BIM Modeling</h3><p>Professionally drafted technical drawings support all trades—structure, architecture, MEP, electrical, plumbing, and structural.</p></div>
+    <!-- Discipline Specific CAD Support -->
+    <div class="service-item">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/CADD%20services.png" alt="Discipline Specific CAD Support">
+      <div class="service-description">
+        <h3>Smart Drafting and BIM Modeling</h3>
+        <p>Professionally drafted technical drawings support all trades—structure, architecture, MEP, electrical, plumbing, and structural.</p>
       </div>
+    </div>
 
-      <!-- Additional Services (auto-centered by grid at small screens) -->
-      <div class="service-item">
-        <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Additional%20Services.PNG" alt="Additional Services">
-        <div class="service-description"><h3>Additional Services</h3><p>Covers a wide range of construction-related support beyond the listed categories—tailored solutions for unique project needs.</p></div>
+    <!-- Additional Services (centered bottom) -->
+    <div class="service-item last-center">
+      <img src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/images/Additional%20Services.PNG" alt="Additional Services">
+      <div class="service-description">
+        <h3>Additional Services</h3>
+        <p>Covers a wide range of construction-related support beyond the listed categories—tailored solutions for unique project needs.</p>
       </div>
-
     </div>
   </div>
 </section>
 
+<!-- NEW: About Us (text left, video right) -->
+<!-- NEW: About Us (text left, video right) -->
 <section class="about-section" id="about">
   <div class="about-text">
-    <h2>About Us</h2>
-    <p>At Resolution Tech Constructions, we employ innovative and highly efficient calculation methodologies to deliver accurate and reliable results. Through the successful automation of non-engineering project costs, we enable greater focus on human-centered engineering innovation. With a diverse range of expertise on board, Resolution Tech has the capacity to anticipate and address challenges both prior to and during project execution. By leveraging advanced technology and data-driven models to foresee potential failures, we help reduce future project costs significantly. Utilizing AI-driven models, we provide clients with precise, cost-effective solutions while ensuring higher quality and performance across all deliverables.</p>
+    <div class="about-card">
+      <h2>About Us</h2>
+      <p>At Resolution Tech Constructions, we employ innovative and highly efficient calculation methodologies to deliver accurate and reliable results. Through the successful automation of non-engineering project costs, we enable greater focus on human-centered engineering innovation.
+      With a diverse range of expertise on board, Resolution Tech has the capacity to anticipate and address challenges both prior to and during project execution. By leveraging advanced technology and data-driven models to foresee potential failures, we help reduce future project costs significantly.
+      Utilizing AI-driven models, we provide clients with precise, cost-effective solutions while ensuring higher quality and performance across all deliverables.</p>
+    </div>
   </div>
+
   <div class="about-media">
     <video class="framed-video" autoplay muted loop playsinline preload="metadata">
       <source src="https://raw.githubusercontent.com/Resolutiontechconstructions/Tech/main/video/Aeroplane_Flies_Over_States_Drops_Markers.mp4" type="video/mp4">
@@ -276,67 +698,62 @@
     </video>
   </div>
 </section>
-
+<!-- Contact / Request a Proposal -->
 <section class="contact-section" id="contact">
-  <div class="container">
-    <h2>Request a Proposal</h2>
-    <p class="contact-intro">Tell us a bit about your project and the service you need. We’ll get back to you promptly.</p>
 
-    <form class="contact-form" action="#" method="post">
-      <div>
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" autocomplete="name" required>
-      </div>
-      <div>
-        <label for="email">Email Address</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-      </div>
-      <div>
-        <label for="phone">Phone Number</label>
-        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
-      </div>
-      <div>
-        <label for="service">Service Needed</label>
-        <select id="service" name="service" required>
-          <option value="" disabled selected>Select a service</option>
-          <option>Structural Analysis and Design</option>
-          <option>Forensic Engineering / Expert Reports</option>
-          <option>Inspection and Compliance</option>
-          <option>Structural Construction Administration</option>
-          <option>Facade Assessment & Repair</option>
-          <option>Solar Panel Services</option>
-          <option>Roof Replacement & Repair Design</option>
-          <option>Smart Drafting and BIM Modeling</option>
-          <option>Other / Additional Services</option>
-        </select>
-      </div>
-      <div class="full">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Share key details: building type, location, timeline, and goals." required></textarea>
-      </div>
-      <div class="full contact-actions">
-        <button type="submit" class="contact-submit">Send Request</button>
-      </div>
-    </form>
-  </div>
+  <h2>Request a Proposal</h2>
+  <p class="contact-intro">Tell us a bit about your project and the service you need. We’ll get back to you promptly.</p>
+
+  <form class="contact-form" action="#" method="post">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" autocomplete="name" required>
+    </div>
+
+    <div>
+      <label for="email">Email Address</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+    </div>
+
+    <div>
+      <label for="phone">Phone Number</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+    </div>
+
+    <div>
+      <label for="service">Service Needed</label>
+<select id="service" name="service" required>
+  <option value="" disabled selected>Select a service</option>
+  <option>Structural Analysis and Design</option>
+  <option>Forensic Engineering / Expert Reports</option>
+  <option>Inspection and Compliance</option>
+  <option>Structural Construction Administration</option>
+  <option>Facade Assessment & Repair</option>
+  <option>Solar Panel Services</option>
+  <option>Roof Replacement & Repair Design</option>
+  <option>Smart Drafting and BIM Modeling</option>
+  <option>Other / Additional Services</option>
+</select>
+    </div>
+
+    <div class="full">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Share key details: building type, location, timeline, and goals." required></textarea>
+    </div>
+
+    <div class="full contact-actions">
+      <button type="submit" class="contact-submit">Send Request</button>
+    </div>
+  </form>
 </section>
+<!-- Page blur overlay for services hover -->
+<div id="blur-overlay"></div>
 
-<!-- Page blur overlay for services hover (desktop only) -->
-<div id="blur-overlay" aria-hidden="true"></div>
-
-<footer>
-  <div class="container">&copy; 2025 Resolution Tech Constructions. All rights reserved.</div>
-</footer>
-
+  <footer>
+    &copy; 2025 Resolution Tech Constructions. All rights reserved.
+  </footer>
 <script>
-// Close menu after clicking a link (mobile)
-function closeMenu(){
-  const cb = document.getElementById('nav-toggle');
-  if(cb) cb.checked = false;
-}
-
-// Build service dropdowns + mobile accordion behavior
-(function(){
+document.addEventListener('DOMContentLoaded', () => {
   const map = new Map([
     ["Structural Analysis and Design", [
       "Structural analysis of existing structures",
@@ -418,61 +835,39 @@ function closeMenu(){
     ]]
   ]);
 
-  const overlay = document.getElementById('blur-overlay');
   const cards = document.querySelectorAll('.service-item');
+  const overlay = document.getElementById('blur-overlay');
 
-  const isDesktop = () => matchMedia('(min-width: 900px)').matches;
-
-  function attach(card){
+  cards.forEach(card => {
     const titleEl = card.querySelector('.service-description h3');
-    const title = titleEl ? titleEl.textContent.trim() : '';
+    const title = titleEl ? titleEl.textContent.trim() : "Services";
     const items = map.get(title) || [];
-    if(!items.length) return;
+    if (!items.length) return; // skip if not in map
 
     // Remove any old dropdown (hot reload safety)
-    card.querySelectorAll('.service-drop').forEach(n => n.remove());
+    const existing = card.querySelector('.service-drop');
+    if (existing) existing.remove();
 
     // Build dropdown
     const drop = document.createElement('div');
     drop.className = 'service-drop';
-    drop.innerHTML = `<h4>${title}</h4><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+    drop.innerHTML = `
+      <h4>${title}</h4>
+      <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
+    `;
     card.appendChild(drop);
 
-    // Desktop: blur overlay on hover/focus
-    if(isDesktop()){
-      const activate = () => { overlay && overlay.classList.add('active'); };
-      const deactivate = () => { overlay && overlay.classList.remove('active'); };
-      card.addEventListener('mouseenter', activate);
-      card.addEventListener('mouseleave', deactivate);
-      card.addEventListener('focusin', activate);
-      card.addEventListener('focusout', deactivate);
-    } else {
-      // Mobile: tap to expand/collapse
-      const desc = card.querySelector('.service-description');
-      desc && desc.addEventListener('click', () => {
-        card.classList.toggle('expanded');
-      });
-    }
-  }
+    // Blur overlay toggle on hover/focus
+    const activate = () => { overlay.classList.add('active'); card.classList.add('hover-focus'); };
+    const deactivate = () => { overlay.classList.remove('active'); card.classList.remove('hover-focus'); };
 
-  cards.forEach(attach);
-
-  // Re-bind on resize to switch behaviors cleanly
-  let timer;
-  window.addEventListener('resize', () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      cards.forEach(card => {
-        card.classList.remove('expanded');
-        // remove events by cloning
-        const clone = card.cloneNode(true);
-        card.parentNode.replaceChild(clone, card);
-      });
-      document.querySelectorAll('.service-item').forEach(attach);
-      if(overlay) overlay.classList.remove('active');
-    }, 180);
+    card.addEventListener('mouseenter', activate);
+    card.addEventListener('mouseleave', deactivate);
+    card.addEventListener('focusin', activate);
+    card.addEventListener('focusout', deactivate);
   });
-})();
+});
 </script>
+
 </body>
 </html>
